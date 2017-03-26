@@ -19,10 +19,8 @@ CONTACTS = [
   }
 ]
 
-SUPPORTED_REQUESTS = ['text/html', 'application/json']
-
 def supported_request?
-  request.xhr? && SUPPORTED_REQUESTS.include?(request.preferred_type.entry)
+  request.xhr?
 end
 
 before do
