@@ -45,6 +45,10 @@ get '/contacts' do
   return_contacts
 end
 
+get '/contacts/json' do
+  CONTACTS.to_json
+end
+
 def return_contact
   if request.preferred_type.entry == 'application/json'
     contact.to_json
@@ -68,4 +72,8 @@ get '/contacts/:id' do
   else
     return_404
   end
+end
+
+get '/contacts/:id/json' do
+  contact.to_json
 end
