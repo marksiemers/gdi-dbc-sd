@@ -1,5 +1,3 @@
-require 'sinatra/cross_origin'
-
 DEBUG_MODE = true
 
 CONTACTS = [
@@ -32,7 +30,8 @@ end
 before do
   puts request.accept
   puts request.preferred_type
-  cross_origin
+  headers 'Access-Control-Allow-Origin' => '*',
+          'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
   status(415) and '' unless supported_request?
 end
 
