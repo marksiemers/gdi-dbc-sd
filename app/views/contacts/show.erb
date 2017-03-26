@@ -5,8 +5,9 @@
   <h1>Interests</h1>
   <ul>
     <% contact[:interests].each do |interest| %>
-    <li <%= "class='the_best'" if interest[:best] %> >
-      <%= interest[:description] %>
-    </li>
+      <li <%= "class='the_best'" if interest[:best] %> >
+        <%= interest[:description] %>
+      </li>
+    <% end %>
   </ul>
 </div>
