@@ -1,4 +1,6 @@
-<div id="person_<%= contact[:id] %>">
-  <span class="first_name"><%= contact[:first_name] %></span>
-  <span class="last_name"><%= contact[:last_name] %></span>
-</div>
+<% CONTACTS.each do |contact| %>
+  <div id="person_<%= contact[:id] %>">
+    <span class="first_name"><%= contact[:first_name] %></span>
+    <span class="last_name"><%= contact[:last_name] %></span>
+  </div>
+<% end %>

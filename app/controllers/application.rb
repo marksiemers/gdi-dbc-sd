@@ -28,18 +28,16 @@ def supported_request?
 end
 
 before do
-  puts request.accept
-  puts request.preferred_type
   headers 'Access-Control-Allow-Origin' => '*',
           'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST']
   status(415) and '' unless supported_request?
 end
 
 def return_contacts
-  if request.accept? 'application/json'
+  if request.preferred_type.entry == 'application/json'
     CONTACTS.to_json
-  elsif request.accept? 'text/html'
-    'hi this will be your contacts'
+  elsif request.preferred_type.entry == 'text/html'
+    erb :'contacts/index'
   end
 end
 
@@ -52,10 +50,10 @@ get '/contacts' do
 end
 
 def return_contact
-  if request.accept? 'application/json'
+  if request.preferred_type.entry == 'application/json'
     contact.to_json
-  elsif request.accept? 'text/html'
-    'hi, I\'m a contact'
+  elsif request.preferred_type.entry == 'text/html'
+    erb :'contacts/show'
   end
 end
 
