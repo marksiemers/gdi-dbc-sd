@@ -1,0 +1,12 @@
+<div id="person_<%= contact[:id] %>">
+  <span class="first_name"><%= contact[:first_name] %></span>
+  <span class="last_name"><%= contact[:last_name] %></span>
+
+  <h1>Interests</h1>
+  <ul>
+    <% contact[:interests].each do |interest| %>
+    <li <%= "class='the_best'" if interest[:best] %> >
+      <%= interest[:description] %>
+    </li>
+  </ul>
+</div>
