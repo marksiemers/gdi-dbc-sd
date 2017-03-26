@@ -1,5 +1,3 @@
-DEBUG_MODE = true
-
 CONTACTS = [
   { id: 1, url: '/contacts/1', first_name: "Mark", last_name: "Siemers", email: "mark.siemers@devbootcamp.com",
     interests: [{ description: 'Ruby', best: false }, { description: 'Making Sauerkraut', best: true }, { description: 'Volleyball', best: false }]
@@ -24,7 +22,7 @@ CONTACTS = [
 SUPPORTED_REQUESTS = ['text/html', 'application/json']
 
 def supported_request?
-  DEBUG_MODE || request.xhr? && SUPPORTED_REQUESTS.include?(request.preferred_type.entry)
+  request.xhr? && SUPPORTED_REQUESTS.include?(request.preferred_type.entry)
 end
 
 before do
@@ -37,7 +35,7 @@ def return_contacts
   if request.preferred_type.entry == 'application/json'
     CONTACTS.to_json
   elsif request.preferred_type.entry == 'text/html'
-    erb :'contacts/index'
+    erb :'contacts/index', layout: false
   end
 end
 
@@ -53,7 +51,7 @@ def return_contact
   if request.preferred_type.entry == 'application/json'
     contact.to_json
   elsif request.preferred_type.entry == 'text/html'
-    erb :'contacts/show'
+    erb :'contacts/show', layout: false
   end
 end
 
