@@ -30,7 +30,6 @@ end
 before do
   puts request.accept
   puts request.preferred_type
-  byebug
   status(415) and '' unless supported_request?
 end
 
