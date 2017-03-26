@@ -20,7 +20,7 @@ CONTACTS = [
 ]
 
 def supported_request?
-  request.xhr?
+  true
 end
 
 before do
