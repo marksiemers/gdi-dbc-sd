@@ -1,5 +1,3 @@
-require 'byebug'
-
 DEBUG_MODE = true
 
 CONTACTS = [
