@@ -6,6 +6,7 @@ gem 'pg'
 # Sinatra driver
 gem 'sinatra', '~> 1.0'
 gem 'sinatra-contrib'
+gem "sinatra-cross_origin", "~> 0.3.1"
 
 gem 'activesupport', '~>4.2.0'
 gem 'activerecord', '~>4.2.0'
