@@ -29,10 +29,15 @@ before do
   status(415) and '' unless supported_request?
 end
 
+def should_return_json?
+  (!request.preferred_type.nil? && request.preferred_type.entry == 'application/json') ||
+  (request.accept?('application/json') && !request.accept?('text/html'))
+end
+
 def return_contacts
-  if request.preferred_type.entry == 'application/json'
+  if should_return_json?
     CONTACTS.to_json
-  elsif request.preferred_type.entry == 'text/html'
+  else
     erb :'contacts/index', layout: false
   end
 end
@@ -50,9 +55,9 @@ get '/contacts/json' do
 end
 
 def return_contact
-  if request.preferred_type.entry == 'application/json'
+  if should_return_json?
     contact.to_json
-  elsif request.preferred_type.entry == 'text/html'
+  else
     erb :'contacts/show', layout: false
   end
 end
